@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2370245462dd5354e8bcfb23265df19e, type: 3}
+  m_Name: GameConfig
+  m_EditorClassIdentifier: 
+  RedDisc: {fileID: 11400000, guid: 8eacbab807350c64fa60128223f0255a, type: 2}
+  YellowDisc: {fileID: 11400000, guid: e5ac978d8e8375f4b83b2e869cc0c3cc, type: 2}
+  Disc: {fileID: 4541783449318428722, guid: a35cdf19ba65b2b4093dded5c4d38e37, type: 3}

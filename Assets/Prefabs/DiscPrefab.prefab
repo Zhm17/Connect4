@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 2509352406791215670}
   - component: {fileID: 1548351160295937427}
   - component: {fileID: 3645714908257984857}
+  - component: {fileID: 4541783449318428722}
   m_Layer: 0
-  m_Name: YellowDiscPref
+  m_Name: DiscPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,3 +83,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4541783449318428722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2997376538002817164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82f7d37456abd694a977d291da9c9e00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
