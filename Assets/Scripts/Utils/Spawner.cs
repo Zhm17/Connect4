@@ -2,9 +2,10 @@
 
 public class Spawner : Singleton<Spawner>
 {
+    [SerializeField]
     private GameObject prefab;
 
-    void Start()
+    protected override void Init()
     {
         prefab = Config.Game.Disc.gameObject;
     }
@@ -18,9 +19,17 @@ public class Spawner : Singleton<Spawner>
         //Instantiate and set position
         Disc newDisc = Instantiate(prefab, position, Quaternion.identity, this.transform).GetComponent<Disc>();
 
-        newDisc.type = type;
+        newDisc.Type = type;
         newDisc.UpdateColor();
 
         return newDisc;
+    }
+
+    public void Clean()
+    {
+        foreach (Disc d in transform.GetComponentsInChildren<Disc>(true))
+        {
+            Destroy(d);
+        }
     }
 }
