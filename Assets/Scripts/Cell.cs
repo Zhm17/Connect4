@@ -1,8 +1,8 @@
 ﻿public struct Cell
 {
-    public Piece piece;
+    public PieceID piece;
 
-    public Cell(Piece piece = Piece.Empty)
+    public Cell(PieceID piece = PieceID.EMPTY)
     {
         this.piece = piece;
     }

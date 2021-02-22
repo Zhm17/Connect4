@@ -14,7 +14,7 @@ public class Spawner : Singleton<Spawner>
     /// Creating new instance of prefab.
     /// </summary>
     /// <returns>New instance of prefab.</returns>
-    public Disc NewInstance(TypeDisc type, Vector3 position)
+    public Disc NewInstance(DiscID type, Vector3 position)
     {
         //Instantiate and set position
         Disc newDisc = Instantiate(prefab, position, Quaternion.identity, this.transform).GetComponent<Disc>();

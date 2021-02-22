@@ -1,58 +1,60 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(TurnPhaseManager))]
+[RequireComponent(typeof(TurnPlayerManager))]
 public class GameManager : Singleton<GameManager>
 {
 
+    [Header("Game Stage")]
     [SerializeField]
-    private Turn turn;
-    public Turn Turn
+    private GameStageID currentStage;
+    public GameStageID CurrentStage
     {
         get
         {
-            return turn;
+            return currentStage;
         }
-    }
-
-
-    [SerializeField]
-    private GamePhase phase;
-    public GamePhase Phase
-    {
-        get
+        private set
         {
-            return phase;
+            currentStage = value;
+            OnGameStageChanged();
         }
     }
 
-    
-    [Header("Players")]
-    [SerializeField]
-    private PlayerController P1;
-    [SerializeField]
-    private PlayerController P2;
-
-
-    [Header("Game Over")]
-    [SerializeField]
-    private bool gameOver = false;
-    public bool GameOver
+    private void OnGameStageChanged()
     {
-        get
+        switch (CurrentStage)
         {
-            return gameOver;
+            case GameStageID.MAIN_MENU:
+                //Show Main Menu
+                break;
+            case GameStageID.IN_GAME:
+                //Starts the Game
+                break;
+            case GameStageID.GAME_OVER:
+                //Show the winner
+                //Show 'Play Again'/'Exit' button
+                break;
         }
     }
 
+    [HideInInspector]
+    public TurnPhaseManager TurnPhase => GetComponent<TurnPhaseManager>();
+    [HideInInspector]
+    public TurnPlayerManager TurnPlayer => GetComponent<TurnPlayerManager>();
 
     protected override void Init()
     {
         //Assign turns
-        P1.turnPlayer = Turn.Player1;
-        P2.turnPlayer = Turn.Player2;
+        CurrentStage = GameStageID.MAIN_MENU;
+    }
 
-        turn = Turn.Player1;
-        phase = GamePhase.START;
-       
+    public GameStageID NextStage()
+    {
+        CurrentStage = (CurrentStage == GameStageID.GAME_OVER) ?
+            GameStageID.MAIN_MENU : CurrentStage + 1;
+
+        return CurrentStage;
     }
 
 }

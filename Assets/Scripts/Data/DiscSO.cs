@@ -4,7 +4,7 @@
 public class DiscSO : ScriptableObject
 {
     [SerializeField]
-    public TypeDisc type;
+    public DiscID type;
 
     public Material[] materials;
 }

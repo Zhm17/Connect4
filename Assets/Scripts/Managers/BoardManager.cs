@@ -51,6 +51,19 @@ public class BoardManager : Singleton<BoardManager>
         }
     }
 
+    /// <summary>
+    /// Position where the disc will be instantiated
+    /// </summary>
+    [Header("Disc Initial Position")]
+    [SerializeField]
+    private static Vector3 discInitialPos = new Vector3(0, 6f, -0.11f);
+    public static Vector3 DiscInitialPosition
+    {
+        get
+        {
+            return discInitialPos;
+        }
+    }
 
     protected override void Init()
     {
@@ -66,7 +79,7 @@ public class BoardManager : Singleton<BoardManager>
         {
             for (int r = 0; r < Rows; r++)
             {
-                grid[r,c] = new Cell(Piece.Empty);
+                grid[r,c] = new Cell(PieceID.EMPTY);
             }
         }
     }
@@ -90,7 +103,7 @@ public class BoardManager : Singleton<BoardManager>
     public int AreCellsAvailable(int colSelected)
     {
         //cells not available
-        if(grid[Rows-1,Columns-1].piece != Piece.Empty)
+        if(grid[Rows-1,Columns-1].piece != PieceID.EMPTY)
         {
             return -1;
         } 
@@ -98,7 +111,7 @@ public class BoardManager : Singleton<BoardManager>
         {
             for (int r = 0; r < Rows; r++)
             {
-                if (Grid[r,colSelected].piece != Piece.Empty)
+                if (Grid[r,colSelected].piece != PieceID.EMPTY)
                 {
                     return (r-1);
                 } 
@@ -126,7 +139,7 @@ public class BoardManager : Singleton<BoardManager>
     }
 
 
-    public void SetCell(Cell cell, Piece piece)
+    public void SetCell(Cell cell, PieceID piece)
     {
         cell.piece = piece;
         LookForAPattern(cell.piece);
@@ -137,9 +150,9 @@ public class BoardManager : Singleton<BoardManager>
     /// Looks for an Match 4 pattern in Horizontal, Vertical and Diagonal
     /// </summary>
     /// <returns></returns>
-    public bool LookForAPattern(Piece piece)
+    public bool LookForAPattern(PieceID piece)
     {
-        if(piece == Piece.Empty)
+        if(piece == PieceID.EMPTY)
         {
             Debug.Log("Piece is Empty");
             return false;

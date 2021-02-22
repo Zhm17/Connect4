@@ -9,9 +9,9 @@
     /// <param name="piece"></param>
     /// <param name="n2match"></param>
     /// <returns></returns>
-    public static bool Horizontal(Cell[,] grid, Piece piece, int n2match)
+    public static bool Horizontal(Cell[,] grid, PieceID piece, int n2match)
     {
-        if (piece == Piece.Empty) return false;
+        if (piece == PieceID.EMPTY) return false;
 
         int rows = grid.GetLength(0);
         int columns = grid.GetLength(1);
@@ -43,9 +43,9 @@
     /// <param name="piece"></param>
     /// <param name="n2match"></param>
     /// <returns></returns>
-    public static bool Vertical(Cell[,] grid, Piece piece, int n2match)
+    public static bool Vertical(Cell[,] grid, PieceID piece, int n2match)
     {
-        if (piece == Piece.Empty) return false;
+        if (piece == PieceID.EMPTY) return false;
 
         int rows = grid.GetLength(0);
         int columns = grid.GetLength(1);
@@ -75,9 +75,9 @@
     /// <param name="piece"></param>
     /// <param name="n2match"></param>
     /// <returns></returns>
-    public static bool DiagonalSlope(Cell[,] grid, Piece piece, int n2match)
+    public static bool DiagonalSlope(Cell[,] grid, PieceID piece, int n2match)
     {
-        if (piece == Piece.Empty) return false;
+        if (piece == PieceID.EMPTY) return false;
 
         int Rows = grid.GetLength(0);
         int Columns = grid.GetLength(1);
@@ -107,9 +107,9 @@
     /// <param name="piece"></param>
     /// <param name="n2match"></param>
     /// <returns></returns>
-    public static bool NegativeDiagonalSlope(Cell[,] grid, Piece piece, int n2match)
+    public static bool NegativeDiagonalSlope(Cell[,] grid, PieceID piece, int n2match)
     {
-        if (piece == Piece.Empty) return false;
+        if (piece == PieceID.EMPTY) return false;
 
         int Rows = grid.GetLength(0);
         int Columns = grid.GetLength(1);

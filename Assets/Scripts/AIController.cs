@@ -30,7 +30,7 @@ public class AIController : MonoBehaviour
 
             if (rowAvailable > -1)
             {
-                Board.SetCell(Board.Grid[rowAvailable, colSelected], Piece.P2);
+                Board.SetCell(Board.Grid[rowAvailable, colSelected], PieceID.P2);
 
                 yield return new WaitForSeconds(2f);
                 newDisc.Drop(rowAvailable);

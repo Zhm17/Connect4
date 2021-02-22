@@ -4,8 +4,8 @@ using DG.Tweening;
 public class Disc : MonoBehaviour
 {
     [SerializeField]
-    private TypeDisc type;
-    public TypeDisc Type
+    private DiscID type;
+    public DiscID Type
     {
         get
         {
@@ -21,10 +21,10 @@ public class Disc : MonoBehaviour
     {
         switch (type)
         {
-            case TypeDisc.RED:
+            case DiscID.RED:
                 SetColor(Config.Game.RedDisc.materials);
                 break;
-            case TypeDisc.YELLOW:
+            case DiscID.YELLOW:
                 SetColor(Config.Game.YellowDisc.materials);
                 break;
         }

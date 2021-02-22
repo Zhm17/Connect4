@@ -1,16 +1,12 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    public Turn turnPlayer;
+    public TurnPlayerID Turn;
     [SerializeField]
     bool AI_enabled = false;
-
-    [SerializeField]
-    private Vector3 discInitPos = new Vector3(0,6f,-0.11f);
 
     private Disc newDisc = null;
 
@@ -19,12 +15,13 @@ public class PlayerController : MonoBehaviour
 
     private bool dropping = false;
 
-
     private AIController AI_Controller;
 
-    private GameManager Game => GameManager.Instance;
+    private TurnPlayerManager TurnPlayerInst => GameManager.Instance.TurnPlayer;
+    private TurnPhaseManager TurnPhaseInst => GameManager.Instance.TurnPhase;
     private BoardManager Board => BoardManager.Instance;
     private Spawner Spawner => Spawner.Instance;
+
 
     private void Awake()
     {
@@ -34,23 +31,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
     void Start()
     {
         Init();
     }
+
 
     private void Init()
     {
         rowAvailable = 0;
         colSelected = 0;
 
-        if (Game.Turn == turnPlayer)
+        if (TurnPlayerInst.CurrentTurnPlayer == Turn)
         {
             if (newDisc == null)
             {
                 dropping = false;
-                newDisc = Spawner.NewInstance((Game.Turn == Turn.Player1) ? TypeDisc.RED : TypeDisc.YELLOW,
-                                                discInitPos);
+                newDisc = Spawner.NewInstance( ((TurnPlayerInst.CurrentTurnPlayer == TurnPlayerID.PLAYER_1) ? 
+                                                DiscID.RED : DiscID.YELLOW),
+                                                BoardManager.DiscInitialPosition);
             }
         }
 
@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
             //TODO Game Manager set a Draw
         }
     }
+
 
     // Update is called once per frame
     IEnumerator PlayerMethodUpdate()
@@ -92,8 +93,8 @@ public class PlayerController : MonoBehaviour
                     {
                         colSelected = (int) objectHit.position.x;
                         newDisc.transform.position = new Vector3(colSelected,
-                                                                discInitPos.y,
-                                                                discInitPos.z);
+                                                                BoardManager.DiscInitialPosition.y,
+                                                                BoardManager.DiscInitialPosition.z);
                     }
                 }
 
@@ -106,7 +107,7 @@ public class PlayerController : MonoBehaviour
                     if (rowAvailable > -1)
                     {
                         dropping = true;
-                        Board.SetCell(Board.Grid[rowAvailable,colSelected], Piece.P1);
+                        Board.SetCell(Board.Grid[rowAvailable,colSelected], PieceID.P1);
                         newDisc.Drop(rowAvailable);
                         StopAllCoroutines();
                     }
