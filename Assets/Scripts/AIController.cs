@@ -1,18 +1,43 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerController))]
 public class AIController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+
+    private Disc newDisc = null;
+    BoardManager Board => BoardManager.Instance;
+
+    public void Init(Disc disc) {
+
+        if (disc == null)
+        {
+            Debug.LogError("Disc is not found...!!");
+            return;
+        }
+
+        newDisc = disc;
+
+        StartCoroutine(AIMethodUpdate());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator AIMethodUpdate()
     {
-        
+        while (true)
+        {
+            int colSelected = Random.Range(0, BoardManager.Columns);
+            int rowAvailable = Board.AreCellsAvailable(colSelected);
+
+            if (rowAvailable > -1)
+            {
+                Board.SetCell(Board.Grid[rowAvailable, colSelected], Piece.P2);
+
+                yield return new WaitForSeconds(2f);
+                newDisc.Drop(rowAvailable);
+                StopAllCoroutines();
+            }
+
+            yield return null;
+        }
     }
 }

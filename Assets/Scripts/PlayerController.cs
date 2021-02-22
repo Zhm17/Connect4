@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    
     [SerializeField]
     public Turn turnPlayer;
     [SerializeField]
@@ -15,7 +14,13 @@ public class PlayerController : MonoBehaviour
 
     private Disc newDisc = null;
 
+    private int colSelected = 0;
+    private int rowAvailable = 0;
+
     private bool dropping = false;
+
+
+    private AIController AI_Controller;
 
     private GameManager Game => GameManager.Instance;
     private BoardManager Board => BoardManager.Instance;
@@ -25,17 +30,20 @@ public class PlayerController : MonoBehaviour
     {
         if (AI_enabled)
         {
-            gameObject.AddComponent<AIController>();
+            AI_Controller = gameObject.AddComponent<AIController>();
         }
     }
 
     void Start()
     {
-        StartPlayer();
+        Init();
     }
 
-    private void StartPlayer()
+    private void Init()
     {
+        rowAvailable = 0;
+        colSelected = 0;
+
         if (Game.Turn == turnPlayer)
         {
             if (newDisc == null)
@@ -46,9 +54,20 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (!AI_enabled)
+        if (!Board.IsBoardFull())
         {
-            StartCoroutine(PlayerMethodUpdate());
+            if (!AI_enabled)
+            {
+                StartCoroutine(PlayerMethodUpdate());
+            }
+            else
+            {
+                AI_Controller.Init(newDisc);
+            }
+        } 
+        else
+        {
+            //TODO Game Manager set a Draw
         }
     }
 
@@ -71,7 +90,8 @@ public class PlayerController : MonoBehaviour
 
                     if (objectHit.CompareTag("ColumnSelection"))
                     {
-                        newDisc.transform.position = new Vector3(objectHit.position.x,
+                        colSelected = (int) objectHit.position.x;
+                        newDisc.transform.position = new Vector3(colSelected,
                                                                 discInitPos.y,
                                                                 discInitPos.z);
                     }
@@ -82,11 +102,12 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetMouseButtonDown(0)) // mouse button input event
                 {
                     //are there cells available?
-                    int availableCell = Board.AreCellsAvailable((int)newDisc.transform.position.x);
-                    if (availableCell > -1)
+                    rowAvailable = Board.AreCellsAvailable((int)newDisc.transform.position.x);
+                    if (rowAvailable > -1)
                     {
                         dropping = true;
-                        newDisc.Drop(availableCell);
+                        Board.SetCell(Board.Grid[rowAvailable,colSelected], Piece.P1);
+                        newDisc.Drop(rowAvailable);
                         StopAllCoroutines();
                     }
                     
@@ -100,5 +121,6 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
     }
+
 
 }
