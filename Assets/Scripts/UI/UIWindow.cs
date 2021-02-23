@@ -10,43 +10,44 @@ public abstract class UIWindow : MonoBehaviour
         {
             return _id;
         }
+        set
+        {
+            _id = value;
+        }
     }
 
-    private void Awake()
+
+    private void Start()
     {
-        UIManager.Show += Show;
         Init();
     }
 
-    private void OnDisable()
-    {
-        UIManager.Show -= Show;
-    }
-
-    private void OnDestroy()
-    {
-        UIManager.Show -= Show;
-    }
-
-
     protected abstract void Init();
 
-    protected virtual void Show(UIWindowID id)
+    public void Show(UIWindowID id)
     {
-        foreach (GameObject g in GetComponentsInChildren<GameObject>())
+        //Debug.Log(transform.name + " : Show event ID = " + id );
+        
+        if (id != ID)
         {
-            if(g!=this)
-                g.SetActive(true);
+            Hide();
+            return;
+        }
+
+        foreach (Transform t in GetComponentsInChildren<Transform>(true))
+        {
+            if(t != transform)
+                t.gameObject.SetActive(true);
         }
        
     }
 
-    protected virtual void Hide()
+    private void Hide()
     {
-        foreach (GameObject g in GetComponentsInChildren<GameObject>())
+        foreach (Transform t in GetComponentsInChildren<Transform>(true))
         {
-            if(g!=this)
-                g.SetActive(false);
+            if (t != transform)
+                t.gameObject.SetActive(false);
         }
     }
 }

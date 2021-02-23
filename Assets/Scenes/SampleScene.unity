@@ -441,7 +441,7 @@ RectTransform:
   - {fileID: 1198924832}
   - {fileID: 1395908586}
   m_Father: {fileID: 574979267}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -709,7 +709,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &116673044
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1075,7 +1075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &151710874
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2023,7 +2023,7 @@ RectTransform:
   - {fileID: 1025263450}
   - {fileID: 35906702}
   m_Father: {fileID: 574979267}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2042,6 +2042,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f28d221dc64a124b8b45b9a5f361efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainMenuWindow: {fileID: 1087992612}
+  InGameWindow: {fileID: 1025263451}
+  GameOverWindow: {fileID: 35906703}
+  currentWindow: 0
 --- !u!114 &287696835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3969,8 +3973,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 48519877}
   - {fileID: 287696833}
+  - {fileID: 48519877}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5783,7 +5787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1022553575
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7224,7 +7228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc7e55ca446bdf45b431a4e9eb4e733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Turn: 0
+  Turn: 2
   AI_enabled: 1
 --- !u!4 &1221525586
 Transform:
@@ -8084,7 +8088,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1517686855
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8618,7 +8622,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1703321970
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9600,8 +9604,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699686dac77612047b9d4283bdc32165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  P1: {fileID: 2035692670}
-  P2: {fileID: 1221525585}
+  Players:
+  - {fileID: 2035692670}
+  - {fileID: 1221525585}
   currentTurnPlayer: 1
 --- !u!114 &2016715125
 MonoBehaviour:
@@ -9645,7 +9650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc7e55ca446bdf45b431a4e9eb4e733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Turn: 0
+  Turn: 1
   AI_enabled: 0
 --- !u!4 &2035692671
 Transform:

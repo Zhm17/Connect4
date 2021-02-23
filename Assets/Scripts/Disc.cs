@@ -48,6 +48,7 @@ public class Disc : MonoBehaviour
 
     private void OnBottom()
     {
-        //TODO Change Game Phase 
+        //Finishing DROP Phase id
+        GameManager.Instance.TurnPlayer.EndPhase();
     }
 }

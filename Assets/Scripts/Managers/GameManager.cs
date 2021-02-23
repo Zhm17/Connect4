@@ -26,14 +26,14 @@ public class GameManager : Singleton<GameManager>
         switch (CurrentStage)
         {
             case GameStageID.MAIN_MENU:
-                //Show Main Menu
+                OnMainMenu();
                 break;
             case GameStageID.IN_GAME:
-                //Starts the Game
+                
+                OnInGame();
                 break;
             case GameStageID.GAME_OVER:
-                //Show the winner
-                //Show 'Play Again'/'Exit' button
+                OnGameOver();
                 break;
         }
     }
@@ -55,6 +55,31 @@ public class GameManager : Singleton<GameManager>
             GameStageID.MAIN_MENU : CurrentStage + 1;
 
         return CurrentStage;
+    }
+
+    private void OnMainMenu()
+    {
+        //Show Main Menu
+        UIManager.Instance.ShowWindow(UIWindowID.MAIN_MENU);
+
+    }
+
+    private void OnInGame()
+    {
+        //Starts the Game
+        UIManager.Instance.ShowWindow(UIWindowID.IN_GAME);
+        TurnPhase.Restart();
+        TurnPlayer.SetTurnPlayer(TurnPlayerID.PLAYER_1);
+
+    }
+
+    private void OnGameOver()
+    {
+        //Show the winner
+        Debug.Log("Winner : " + TurnPlayer.CurrentTurnPlayer);
+        //Show 'Play Again' button
+        UIManager.Instance.ShowWindow(UIWindowID.GAME_OVER);
+        
     }
 
 }

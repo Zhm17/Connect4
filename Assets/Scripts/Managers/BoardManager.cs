@@ -152,6 +152,7 @@ public class BoardManager : Singleton<BoardManager>
     /// <returns></returns>
     public bool LookForAPattern(PieceID piece)
     {
+
         if(piece == PieceID.EMPTY)
         {
             Debug.Log("Piece is Empty");

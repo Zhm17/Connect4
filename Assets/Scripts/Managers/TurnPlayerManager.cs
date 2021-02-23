@@ -1,13 +1,6 @@
 ﻿using UnityEngine;
 public class TurnPlayerManager : MonoBehaviour
 {
-
-    [Header("Players")]
-    [SerializeField]
-    private PlayerController P1;
-    [SerializeField]
-    private PlayerController P2;
-
     [SerializeField]
     private TurnPlayerID currentTurnPlayer = TurnPlayerID.PLAYER_1;
     public TurnPlayerID CurrentTurnPlayer
@@ -25,29 +18,63 @@ public class TurnPlayerManager : MonoBehaviour
 
     private void OnTurnPlayerChanged()
     {
+        TurnPhase.Restart();
+
         switch (currentTurnPlayer)
         {
             case TurnPlayerID.PLAYER_1:
+                Players[0].Play();
                 break;
             case TurnPlayerID.PLAYER_2:
+                Players[1].Play();
                 break;
         }
     }
 
-    void Start()
-    {
-        //Assign turns
-        P1.Turn = TurnPlayerID.PLAYER_1;
-        P2.Turn = TurnPlayerID.PLAYER_2;
+    [Header("Players")]
+    [SerializeField]
+    private PlayerController[] Players;
 
+    TurnPhaseManager TurnPhase => GameManager.Instance.TurnPhase;
+
+/*    void Start()
+    {
         currentTurnPlayer = TurnPlayerID.PLAYER_1;
+    }*/
+
+    public void SetTurnPlayer(TurnPlayerID id)
+    {
+        CurrentTurnPlayer = id;
+        Debug.Log(" --------------- TURN : " + CurrentTurnPlayer);
     }
 
-    public TurnPlayerID NextPlayer()
+    private void NextPlayer()
     {
-        currentTurnPlayer = (CurrentTurnPlayer == TurnPlayerID.PLAYER_2) ?
-            TurnPlayerID.PLAYER_1 : currentTurnPlayer + 1;
+        CurrentTurnPlayer = (CurrentTurnPlayer == TurnPlayerID.PLAYER_2) ?
+            TurnPlayerID.PLAYER_1 : CurrentTurnPlayer + 1;
 
-        return currentTurnPlayer;
+        Debug.Log(" --------------- TURN : " + CurrentTurnPlayer);
+    }
+
+    /// <summary>
+    /// Switch Phase
+    /// </summary>
+    public void EndPhase()
+    {
+        if(TurnPhase.CurrentTurnPhase == TurnPhaseID.EVALUATION)
+        {
+            EndTurn();
+            return;
+        }
+
+        TurnPhase.Next();
+    }
+
+    /// <summary>
+    /// Switch Player
+    /// </summary>
+    private void EndTurn()
+    {
+        NextPlayer();
     }
 }
