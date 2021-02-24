@@ -29,7 +29,7 @@ public class Spawner : Singleton<Spawner>
     {
         foreach (Disc d in transform.GetComponentsInChildren<Disc>(true))
         {
-            Destroy(d);
+            Destroy(d.gameObject);
         }
     }
 }

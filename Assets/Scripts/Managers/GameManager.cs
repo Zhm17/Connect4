@@ -59,9 +59,9 @@ public class GameManager : Singleton<GameManager>
 
     private void OnMainMenu()
     {
+        BoardManager.Instance.CleanBoard();
         //Show Main Menu
         UIManager.Instance.ShowWindow(UIWindowID.MAIN_MENU);
-
     }
 
     private void OnInGame()

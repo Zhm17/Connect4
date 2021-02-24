@@ -73,13 +73,13 @@ public class BoardManager : Singleton<BoardManager>
 
     private void CreateBoard()
     {
-        grid = new Cell[Rows,Columns];
+        grid = new Cell[Columns,Rows];
 
         for (int c = 0; c < Columns;c++)
         {
             for (int r = 0; r < Rows; r++)
             {
-                grid[r,c] = new Cell(PieceID.EMPTY);
+                grid[c,r] = new Cell(PieceID.EMPTY);
             }
         }
     }
@@ -90,8 +90,9 @@ public class BoardManager : Singleton<BoardManager>
     /// </summary>
     public void CleanBoard()
     {
-        CreateBoard();
         Spawner.Instance.Clean();
+        CreateBoard();
+       
     }
 
 
@@ -102,23 +103,16 @@ public class BoardManager : Singleton<BoardManager>
     /// <returns></returns>
     public int AreCellsAvailable(int colSelected)
     {
-        //cells not available
-        if(grid[Rows-1,Columns-1].piece != PieceID.EMPTY)
+        
+        for (int r = 0; r < Rows; r++)
         {
-            return -1;
-        } 
-        else
-        {
-            for (int r = 0; r < Rows; r++)
+            if (Grid[colSelected, r].piece == PieceID.EMPTY)
             {
-                if (Grid[r,colSelected].piece != PieceID.EMPTY)
-                {
-                    return (r-1);
-                } 
-            } 
+                return r;
+            }
         }
 
-        return 0;
+        return -1;
     }
 
 
@@ -139,10 +133,10 @@ public class BoardManager : Singleton<BoardManager>
     }
 
 
-    public void SetCell(Cell cell, PieceID piece)
+    public void SetCell(Vector2 vect, PieceID piece)
     {
-        cell.piece = piece;
-        LookForAPattern(cell.piece);
+        Grid[(int)vect.x,(int)vect.y].piece = piece;
+        LookForAPattern(piece);
     }
 
 

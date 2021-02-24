@@ -13,22 +13,21 @@
     {
         if (piece == PieceID.EMPTY) return false;
 
-        int rows = grid.GetLength(0);
-        int columns = grid.GetLength(1);
-
+        int columns = grid.GetLength(0);
+        int rows = grid.GetLength(1);
+        
         //Horizontal
         for (int c = 0; c < (columns - (n2match - 1)); c++)
         {
             for (int r = 0; r < rows; r++)
             {
-                if (grid[r, c].piece == piece &&
-                    grid[r, c + 1].piece == piece &&
-                    grid[r, c + 2].piece == piece &&
-                    grid[r, c + 3].piece == piece)
+                if (grid[c, r].piece == piece &&
+                    grid[c + 1, r].piece == piece &&
+                    grid[c + 2, r].piece == piece &&
+                    grid[c + 3, r].piece == piece)
                 {
                     return true;
                 }
-
             }
         }
 
@@ -47,17 +46,17 @@
     {
         if (piece == PieceID.EMPTY) return false;
 
-        int rows = grid.GetLength(0);
-        int columns = grid.GetLength(1);
+        int columns = grid.GetLength(0);
+        int rows = grid.GetLength(1);
 
         for (int c = 0; c < columns; c++)
         {
             for (int r = 0; r < (rows - (n2match - 1)); r++)
             {
-                if (grid[r, c].piece == piece &&
-                    grid[r + 1, c].piece == piece &&
-                    grid[r + 2, c].piece == piece &&
-                    grid[r + 3, c].piece == piece)
+                if (grid[c, r].piece == piece &&
+                    grid[c, r + 1].piece == piece &&
+                    grid[c, r + 2].piece == piece &&
+                    grid[c, r + 3].piece == piece)
                 {
                     return true;
                 }
@@ -79,17 +78,17 @@
     {
         if (piece == PieceID.EMPTY) return false;
 
-        int Rows = grid.GetLength(0);
-        int Columns = grid.GetLength(1);
-
-        for (int c = 0; c < (Columns - (n2match - 1)); c++)
+        int columns = grid.GetLength(0);
+        int rows = grid.GetLength(1);
+        
+        for (int c = 0; c < (columns - (n2match - 1)); c++)
         {
-            for (int r = 0; r < (Rows - (n2match - 1)); r++)
+            for (int r = 0; r < (rows - (n2match - 1)); r++)
             {
-                if (grid[r, c].piece == piece &&
-                    grid[r + 1, c + 1].piece == piece &&
-                    grid[r + 2, c + 2].piece == piece &&
-                    grid[r + 3, c + 3].piece == piece)
+                if (grid[c, r].piece == piece &&
+                    grid[c + 1, r + 1].piece == piece &&
+                    grid[c + 2, r + 2].piece == piece &&
+                    grid[c + 3, r + 3].piece == piece)
                 {
                     return true;
                 }
@@ -111,17 +110,17 @@
     {
         if (piece == PieceID.EMPTY) return false;
 
-        int Rows = grid.GetLength(0);
-        int Columns = grid.GetLength(1);
-
-        for (int c = 0; c < (Columns - (n2match - 1)); c++)
+        int columns = grid.GetLength(0);
+        int rows = grid.GetLength(1);
+        
+        for (int c = 0; c < (columns - (n2match - 1)); c++)
         {
-            for (int r = (n2match - 1); r < Rows; r++)
+            for (int r = (n2match - 1); r < rows; r++)
             {
-                if (grid[r, c].piece == piece &&
-                    grid[r - 1, c + 1].piece == piece &&
-                    grid[r - 2, c + 2].piece == piece &&
-                    grid[r - 3, c + 3].piece == piece)
+                if (grid[c, r].piece == piece &&
+                    grid[c + 1, r - 1].piece == piece &&
+                    grid[c + 2, r - 2].piece == piece &&
+                    grid[c + 3, r - 3].piece == piece)
                 {
                     return true;
                 }

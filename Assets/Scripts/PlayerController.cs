@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     bool AI_enabled = false;
 
-    private Disc newDisc = null;
+    public Disc newDisc = null;
 
     private int colSelected = 0;
     private int rowAvailable = 0;
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                AI_Controller.Init(newDisc);
+                AI_Controller.Init();
             }
         } 
         else
@@ -92,13 +92,19 @@ public class PlayerController : MonoBehaviour
             {
                 //are there cells available?
                 rowAvailable = Board.AreCellsAvailable((int)newDisc.transform.position.x);
+                Debug.Log("Cell Available = [" + colSelected + "," +  rowAvailable + "]");
+
+
                 if (rowAvailable > -1)
                 {
-                    //Switch Phase
-                    TurnPlayer.EndPhase();
-                    Board.SetCell(Board.Grid[rowAvailable,colSelected], PieceID.P1);
+                    Board.SetCell(new Vector2(colSelected, rowAvailable),
+                                     (PieceID)((int)TurnPlayer.CurrentTurnPlayer));
+                    
                     newDisc.Drop(rowAvailable);
                     newDisc = null;
+
+                    //Switch Phase
+                    TurnPlayer.EndPhase();
                     StopAllCoroutines();
                 }
                     

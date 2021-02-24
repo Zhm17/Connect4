@@ -9,15 +9,15 @@ public class AIController : MonoBehaviour
     BoardManager Board => BoardManager.Instance;
     private TurnPlayerManager TurnPlayer => GameManager.Instance.TurnPlayer;
 
-    public void Init(Disc disc) {
+    public void Init() {
 
-        if (disc == null)
+        newDisc = GetComponent<PlayerController>().newDisc;
+
+        if (newDisc == null)
         {
             Debug.LogError("Disc is not found...!!");
             return;
         }
-
-        newDisc = disc;
 
         StartCoroutine(AIMethodUpdate());
     }
@@ -26,18 +26,27 @@ public class AIController : MonoBehaviour
     {
         while (true)
         {
+            //Random selection
             int colSelected = Random.Range(0, BoardManager.Columns);
             int rowAvailable = Board.AreCellsAvailable(colSelected);
 
+            Debug.Log("Cell Available = [" + colSelected + "," + rowAvailable + "]");
+
+            newDisc.transform.position= new Vector3(colSelected, 
+                                                    newDisc.transform.position.y, 
+                                                    newDisc.transform.position.z);
+
             if (rowAvailable > -1)
             {
-                //Switch Phase
-                TurnPlayer.EndPhase();
-                Board.SetCell(Board.Grid[rowAvailable, colSelected], PieceID.P2);
+                Board.SetCell(new Vector2(colSelected, rowAvailable), 
+                                (PieceID)((int)TurnPlayer.CurrentTurnPlayer));
 
                 yield return new WaitForSeconds(1.5f);
                 newDisc.Drop(rowAvailable);
-                newDisc = null;
+                GetComponent<PlayerController>().newDisc = newDisc = null;
+
+                //Switch Phase
+                TurnPlayer.EndPhase();
                 StopAllCoroutines();
             }
 

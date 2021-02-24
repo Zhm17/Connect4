@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GameOverWindow : UIWindow
 {
+
     [SerializeField]
     private Button ExitButton;
 
@@ -12,8 +13,8 @@ public class GameOverWindow : UIWindow
     {
         ID = UIWindowID.GAME_OVER;
 
-        ExitButton.onClick.AddListener(()=> 
-        UIManager.Instance.ShowWindow(UIWindowID.MAIN_MENU));
+        ExitButton.onClick.AddListener(()=>
+            GameManager.Instance.NextStage());
     }
 
 }
