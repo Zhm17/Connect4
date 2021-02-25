@@ -1,8 +1,8 @@
-﻿public struct @int
+﻿public struct Cell
 {
     public PieceID piece;
 
-    public @int(PieceID piece = PieceID.EMPTY)
+    public Cell(PieceID piece = PieceID.EMPTY)
     {
         this.piece = piece;
     }

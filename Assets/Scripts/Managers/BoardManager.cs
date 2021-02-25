@@ -38,8 +38,8 @@ public class BoardManager : Singleton<BoardManager>
 
 
     [SerializeField]
-    private  @int[,] grid;
-    public @int[,] Grid
+    private  Cell[,] grid;
+    public Cell[,] Grid
     {
         get
         {
@@ -74,13 +74,13 @@ public class BoardManager : Singleton<BoardManager>
 
     private void CreateBoard()
     {
-        grid = new @int[Columns,Rows];
+        grid = new Cell[Columns,Rows];
 
         for (int c = 0; c < Columns;c++)
         {
             for (int r = 0; r < Rows; r++)
             {
-                grid[c,r] = new @int(PieceID.EMPTY);
+                grid[c,r] = new Cell(PieceID.EMPTY);
             }
         }
     }
