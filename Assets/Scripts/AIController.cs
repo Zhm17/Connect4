@@ -4,7 +4,6 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerController))]
 public class AIController : MonoBehaviour
 {
-
     private Disc newDisc = null;
     BoardManager Board => BoardManager.Instance;
     private TurnPlayerManager TurnPlayer => GameManager.Instance.TurnPlayer;

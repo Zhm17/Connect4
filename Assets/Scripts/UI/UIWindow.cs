@@ -24,7 +24,7 @@ public abstract class UIWindow : MonoBehaviour
 
     protected abstract void Init();
 
-    public void Show(UIWindowID id)
+    public virtual void Show(UIWindowID id)
     {
         //Debug.Log(transform.name + " : Show event ID = " + id );
         

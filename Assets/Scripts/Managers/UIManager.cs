@@ -33,8 +33,6 @@ public class UIManager : Singleton<UIManager>
         ShowEvent += MainMenuWindow.Show;
         ShowEvent += InGameWindow.Show;
         ShowEvent += GameOverWindow.Show;
-
-        ShowEvent(UIWindowID.MAIN_MENU);
     }
 
     private void OnDestroy()
@@ -43,6 +41,11 @@ public class UIManager : Singleton<UIManager>
         ShowEvent -= MainMenuWindow.Show;
         ShowEvent -= InGameWindow.Show;
         ShowEvent -= GameOverWindow.Show;
+    }
+
+    private void Start()
+    {
+        ShowEvent(UIWindowID.MAIN_MENU);
     }
 
     public void ShowWindow(UIWindowID id)
