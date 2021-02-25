@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(TurnPhaseManager))]
-[RequireComponent(typeof(TurnPlayerManager))]
+[RequireComponent(typeof(TurnPhaseComponent))]
+[RequireComponent(typeof(TurnPlayerComponent))]
 public class GameManager : Singleton<GameManager>
 {
 
@@ -39,9 +39,9 @@ public class GameManager : Singleton<GameManager>
     }
 
     [HideInInspector]
-    public TurnPhaseManager TurnPhase => GetComponent<TurnPhaseManager>();
+    public TurnPhaseComponent TurnPhase => GetComponent<TurnPhaseComponent>();
     [HideInInspector]
-    public TurnPlayerManager TurnPlayer => GetComponent<TurnPlayerManager>();
+    public TurnPlayerComponent TurnPlayer => GetComponent<TurnPlayerComponent>();
 
     protected override void Init()
     {

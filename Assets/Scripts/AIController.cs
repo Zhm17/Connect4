@@ -6,7 +6,7 @@ public class AIController : MonoBehaviour
 {
     private Disc newDisc = null;
     BoardManager Board => BoardManager.Instance;
-    private TurnPlayerManager TurnPlayer => GameManager.Instance.TurnPlayer;
+    private TurnPlayerComponent TurnPlayer => GameManager.Instance.TurnPlayer;
 
     public void Init() {
 
@@ -26,7 +26,7 @@ public class AIController : MonoBehaviour
         while (true)
         {
             //Random selection
-            int colSelected = Random.Range(0, BoardManager.Columns);
+            int colSelected = RandomSelection();
             int rowAvailable = Board.AreCellsAvailable(colSelected);
 
             Debug.Log("Cell Available = [" + colSelected + "," + rowAvailable + "]");
@@ -51,5 +51,18 @@ public class AIController : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    private int RandomSelection()
+    {
+        return Random.Range(0, BoardManager.Columns);
+    }
+
+    private int MiniMaxSelection()
+    {
+
+
+
+        return 0;
     }
 }

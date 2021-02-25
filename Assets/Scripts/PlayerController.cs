@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
     private AIController AI_Controller;
 
-    private TurnPlayerManager TurnPlayer => GameManager.Instance.TurnPlayer;
+    private TurnPlayerComponent TurnPlayer => GameManager.Instance.TurnPlayer;
     private BoardManager Board => BoardManager.Instance;
     private Spawner Spawner => Spawner.Instance;
 

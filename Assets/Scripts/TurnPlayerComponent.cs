@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-public class TurnPlayerManager : MonoBehaviour
+
+public class TurnPlayerComponent : MonoBehaviour
 {
     [SerializeField]
     private TurnPlayerID currentTurnPlayer = TurnPlayerID.PLAYER_1;
@@ -35,12 +36,7 @@ public class TurnPlayerManager : MonoBehaviour
     [SerializeField]
     private PlayerController[] Players;
 
-    TurnPhaseManager TurnPhase => GameManager.Instance.TurnPhase;
-
-/*    void Start()
-    {
-        currentTurnPlayer = TurnPlayerID.PLAYER_1;
-    }*/
+    TurnPhaseComponent TurnPhase => GameManager.Instance.TurnPhase;
 
     public void SetTurnPlayer(TurnPlayerID id)
     {

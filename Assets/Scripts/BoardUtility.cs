@@ -9,7 +9,7 @@
     /// <param name="piece"></param>
     /// <param name="n2match"></param>
     /// <returns></returns>
-    public static bool Horizontal(Cell[,] grid, PieceID piece, int n2match)
+    public static bool Horizontal(@int[,] grid, PieceID piece, int n2match)
     {
         if (piece == PieceID.EMPTY) return false;
 
@@ -42,7 +42,7 @@
     /// <param name="piece"></param>
     /// <param name="n2match"></param>
     /// <returns></returns>
-    public static bool Vertical(Cell[,] grid, PieceID piece, int n2match)
+    public static bool Vertical(@int[,] grid, PieceID piece, int n2match)
     {
         if (piece == PieceID.EMPTY) return false;
 
@@ -74,7 +74,7 @@
     /// <param name="piece"></param>
     /// <param name="n2match"></param>
     /// <returns></returns>
-    public static bool DiagonalSlope(Cell[,] grid, PieceID piece, int n2match)
+    public static bool DiagonalSlope(@int[,] grid, PieceID piece, int n2match)
     {
         if (piece == PieceID.EMPTY) return false;
 
@@ -106,7 +106,7 @@
     /// <param name="piece"></param>
     /// <param name="n2match"></param>
     /// <returns></returns>
-    public static bool NegativeDiagonalSlope(Cell[,] grid, PieceID piece, int n2match)
+    public static bool NegativeDiagonalSlope(@int[,] grid, PieceID piece, int n2match)
     {
         if (piece == PieceID.EMPTY) return false;
 

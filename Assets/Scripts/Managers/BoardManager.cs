@@ -38,8 +38,8 @@ public class BoardManager : Singleton<BoardManager>
 
 
     [SerializeField]
-    private  Cell[,] grid;
-    public Cell[,] Grid
+    private  @int[,] grid;
+    public @int[,] Grid
     {
         get
         {
@@ -50,6 +50,7 @@ public class BoardManager : Singleton<BoardManager>
             grid = value;
         }
     }
+
 
     /// <summary>
     /// Position where the disc will be instantiated
@@ -73,13 +74,13 @@ public class BoardManager : Singleton<BoardManager>
 
     private void CreateBoard()
     {
-        grid = new Cell[Columns,Rows];
+        grid = new @int[Columns,Rows];
 
         for (int c = 0; c < Columns;c++)
         {
             for (int r = 0; r < Rows; r++)
             {
-                grid[c,r] = new Cell(PieceID.EMPTY);
+                grid[c,r] = new @int(PieceID.EMPTY);
             }
         }
     }
@@ -113,6 +114,35 @@ public class BoardManager : Singleton<BoardManager>
         }
 
         return -1;
+    }
+
+    /// <summary>
+    /// Return a List<int> with available columns
+    /// </summary>
+    /// <returns></returns>
+    public List<int> AvailableColumns()
+    {
+        List<int> availableColL = new List<int>();
+
+        for (int c= 0; c < Columns; c++)
+        {
+            if (IsColumnAvailable(c))
+            {
+                availableColL.Add(c);
+            }
+        }
+
+        return availableColL;
+    }
+
+    /// <summary>
+    /// Ask if a given column has available cells
+    /// </summary>
+    /// <param name="column"></param>
+    /// <returns></returns>
+    public bool IsColumnAvailable(int column)
+    {
+        return (Grid[column, Rows - 1].piece == PieceID.EMPTY);
     }
 
 
